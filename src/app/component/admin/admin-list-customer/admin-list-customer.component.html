@@ -1,0 +1,97 @@
+
+<div class="col-md-12" style="margin-top: 80px;">
+  <app-search-customer-name></app-search-customer-name>
+  <div class="card table-card">
+    <div class="card-header" >
+      <h3 style="margin: auto;font-weight: 450;font-size: 25px">Customer List</h3>
+      <div class="card-header-right">
+
+        <ul class="list-unstyled card-option">
+          <li><i class="ik ik-chevron-left action-toggle"></i></li>
+          <li><i class="ik ik-minus minimize-card"></i></li>
+          <li><i class="ik ik-x close-card"></i></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0" mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef>UserName</th>
+            <td mat-cell *matCellDef="let element">{{element.username}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef>Avatar</th>
+            <td mat-cell *matCellDef="let element"><img style="width: 50px; height: 50px" [src]="element.avatar"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef>DateOfBirth</th>
+            <td mat-cell *matCellDef="let element">{{element.dob}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{element.email}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+            <td mat-cell *matCellDef="let element">{{element.phone}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let element">{{element.address}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <a (click)="updateUser(element.id)"><i class="ik ik-edit f-16 mr-15 text-green"></i></a>
+              <a data-toggle="modal" (click)="setData(element.id)" data-target="#exampleModalCenter"><i class="ik ik-trash-2 f-16 text-red"></i></a>
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">notice</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete this user?
+                    </div>
+                    <div class="modal-footer">
+                      <button (click)="deleteCustomer()" data-dismiss="modal"  type="button" class="btn btn-primary" style="border-radius: 3px;height: 40px;width: 100px;">Yes</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 3px;height: 40px;width: 100px;">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+

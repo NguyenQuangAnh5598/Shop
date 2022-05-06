@@ -1,0 +1,49 @@
+<!-- top contact and member performance start -->
+  <div class="col-md-11" style="margin: auto;">
+  <div class="card table-card">
+    <div class="card-header">
+      <h2 style="margin: auto;font-weight: 450;font-size: 25px">Shipping Order List</h2>
+      <div class="card-header-right">
+        <ul class="list-unstyled card-option">
+          <li><i class="ik ik-chevron-left action-toggle"></i></li>
+          <li><i class="ik ik-minus minimize-card"></i></li>
+          <li><i class="ik ik-x close-card"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Create date</th>
+            <th>Confirm</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let order of orderList, index as i" >
+            <td>{{order?.user?.username}}</td>
+            <td  >{{order?.createTime}}</td>
+
+
+
+            <td><button (click)="acceptOrder(order.id, i)">Accept</button></td>
+
+
+
+            <td><label class="badge badge-success">Paid</label></td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
